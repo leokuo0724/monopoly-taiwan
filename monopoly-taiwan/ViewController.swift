@@ -64,6 +64,7 @@ let buildingInfoData: Array<BuildingInfo?> = [
 var currentInfo: BuildingInfo?
 // 擲骰 -> 玩家 -> 電腦
 var currentRound: String = "擲骰"
+var isCanNextRound: Bool = true
 
 var playerStatus = PlayerStatus(name: "玩家")
 var computerStatus = PlayerStatus(name: "電腦")
@@ -97,6 +98,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var infoCardBuyBtn: UIButton!
     @IBOutlet weak var roundLabel: UILabel!
     @IBOutlet weak var roundImageView: UIImageView!
+    @IBOutlet weak var diceImageView: UIImageView!
     
     
     override func viewDidLoad() {
@@ -111,7 +113,7 @@ class ViewController: UIViewController {
         infoCardImgG = infoCardImg
         infoCardOwnerG = infoCardOwner
         infoCardCurrentTollG = infoCardCurrentToll
-        infoCardNextTollG = infoCardCurrentToll
+        infoCardNextTollG = infoCardNextToll
         infoCardBuildingTitleG = infoCardBuildingTitle
         infoCardBuyBtnG = infoCardBuyBtn
         
@@ -158,6 +160,16 @@ class ViewController: UIViewController {
         chessPlayer.frame = CGRect(x: 0, y: 0, width: 25, height: 50)
         chessPlayer.image = UIImage(named: "玩家")
         tileUIView.addSubview(chessPlayer)
+        
+        // 骰子動畫初始化
+        var diceImages = [UIImage]()
+        for i in 1...6 {
+            diceImages.append(UIImage(named: "dice-\(i)")!)
+        }
+        diceImageView.animationImages = diceImages
+        diceImageView.animationDuration = 1
+        diceImageView.animationRepeatCount = 2
+        diceImageView.image = diceImages.last
         
         // 資料整體初始化
         dataInitialize()
@@ -239,24 +251,30 @@ class ViewController: UIViewController {
     
     // 下一回合
     @IBAction func nextRound(_ sender: Any) {
+        guard isCanNextRound == true else {
+            return
+        }
+        isCanNextRound = false
         // now round: 電腦 set to 玩家 round
         if (currentRound == "擲骰") { // 玩家擲骰子
-            self.dice(role: playerStatus)
             currentRound = "玩家"
             setRoundView()
-            setInfoCardView()
+            self.dice(role: playerStatus)
         } else if (currentRound == "玩家") { // 玩家結束動作給電腦
-            self.dice(role: computerStatus)
             currentRound = "電腦"
             setRoundView()
-            // 判斷電腦可否買
-            if let currentInfo = currentInfo,
-               computerStatus.money >= currentInfo.levelCostInfo[currentInfo.level],
-               currentInfo.owner != "玩家" {
-                self.purchase()
+            self.dice(role: computerStatus)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                // 判斷電腦可否買
+                if let currentInfo = currentInfo,
+                   computerStatus.money >= currentInfo.levelCostInfo[currentInfo.level],
+                   currentInfo.owner != "玩家" {
+                    self.purchase()
+                }
+                currentRound = "擲骰"
+                self.setRoundView()
+                isCanNextRound = true
             }
-            currentRound = "擲骰"
-            setRoundView()
         }
     }
     // 設定回合顯示
@@ -274,17 +292,29 @@ class ViewController: UIViewController {
         let roleName: String = role.name
         
         role.actioned = false
-        let number = Int.random(in: 1...1)
-        print("\(role) dice \(number)")
-        role.currentPosition += number
-        if role.currentPosition > 15 {
-            role.currentPosition -= 16
+        let number = Int.random(in: 1...6)
+        
+        // 播放骰子動畫
+        diceImageView.startAnimating()
+        
+        // 等待骰子動畫
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.diceImageView.image = UIImage(named: "dice-\(number)")
+            role.currentPosition += number
+            if role.currentPosition > 15 {
+                role.currentPosition -= 16
+            }
+            setChessPosition()
+            // 設定當前卡片
+            currentInfo = buildingInfoData[role.currentPosition]
+            if currentRound == "玩家" {
+                setInfoCardView()
+                // 玩家此時可決定跳過進行下回合，電腦則等判斷完要不要買地產
+                isCanNextRound = true
+            }
+            // 檢查是否要付過路費
+            self.payToll(roleName: roleName)
         }
-        setChessPosition()
-        // 設定當前卡片
-        currentInfo = buildingInfoData[role.currentPosition]
-        // 檢查是否要付過路費
-        self.payToll(roleName: roleName)
     }
     func payToll(roleName: String) {
         if let currentInfo = currentInfo {
@@ -362,8 +392,7 @@ func setInfoCardView() {
             img.image = UIImage(named: currentInfo.name)
             title.text = currentInfo.name
             owner.text = currentInfo.owner
-//            toll.text = String(currentInfo.roadTollInfo[currentInfo.level])
-            toll.text = "e04"
+            toll.text = String(currentInfo.roadTollInfo[currentInfo.level])
             if currentInfo.level >= 3 {
                 nextToll.text = "已達最高等"
             } else {
@@ -387,15 +416,15 @@ func setInfoCardView() {
                 buyBtn.alpha = 0
             }
             
-            UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.4, delay: 0, options: .curveEaseOut) {
+            UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.4, delay: 0.2, options: .curveEaseOut) {
                 card.layer.opacity = 1
-                card.frame.origin.x = 614
+                card.frame.origin.x = 592
                 if let tileUIViewG = tileUIViewG {
                     tileUIViewG.frame.origin.x = 100
                 }
             }
         } else {
-            UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.4, delay: 0, options: .curveEaseOut) {
+            UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.4, delay: 0.2, options: .curveEaseOut) {
                 card.layer.opacity = 0
                 card.frame.origin.x = 900
                 if let tileUIViewG = tileUIViewG {
@@ -446,7 +475,10 @@ class SingleTileUIView: UIView {
         setInfoCardView()
     }
     
-    private func setTileImg() {
+    func setTileImg() {
+//        if let index = self.tileIndex, let buildingData = BuildingInfoData[index] {
+//            
+//        }
         self.tileImage = UIImageView()
         if let tileImage = self.tileImage {
             tileImage.image = UIImage(named: "tile")

@@ -38,6 +38,12 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mgc-XN-hb1">
                                 <rect key="frame" x="191" y="58" width="514" height="298"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dice-1" translatesAutoresizingMaskIntoConstraints="NO" id="TGO-B7-uE7">
+                                        <rect key="frame" x="234" y="109" width="47" height="47"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ByJ-ja-d9i">
@@ -56,7 +62,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VvB-uz-7hj">
-                                <rect key="frame" x="600" y="20" width="245" height="373"/>
+                                <rect key="frame" x="900" y="20" width="245" height="373"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CFU-uK-il8">
@@ -115,7 +121,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mZ-DA-zNp">
-                                        <rect key="frame" x="159" y="239" width="62" height="15"/>
+                                        <rect key="frame" x="141" y="239" width="80" height="15"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
@@ -129,7 +135,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BuA-kr-GIJ">
-                                        <rect key="frame" x="206" y="266" width="15" height="15"/>
+                                        <rect key="frame" x="141" y="266" width="80" height="15"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
@@ -205,6 +211,7 @@
                     </view>
                     <connections>
                         <outlet property="computerMoney" destination="USd-09-f6G" id="sHL-UP-v7c"/>
+                        <outlet property="diceImageView" destination="TGO-B7-uE7" id="SgB-Xk-TCA"/>
                         <outlet property="infoCard" destination="VvB-uz-7hj" id="ZiR-58-ANO"/>
                         <outlet property="infoCardBuildingTitle" destination="YdI-hQ-wUj" id="c7t-eE-Vo8"/>
                         <outlet property="infoCardBuyBtn" destination="gga-bV-UjH" id="Q5e-Pg-o1j"/>
@@ -225,6 +232,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="dice-1" width="260" height="265"/>
         <image name="玩家" width="25" height="50"/>
         <image name="電腦" width="25" height="50"/>
         <namedColor name="ComputerColor">
