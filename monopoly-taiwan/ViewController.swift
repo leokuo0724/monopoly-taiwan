@@ -32,38 +32,41 @@ class BuildingInfo: Codable {
     }
 }
 class PlayerStatus {
-    var name: String = ""
+    let name: String
     var currentPosition: Int = 0
     var money: Int = 1000
-    var estate: Array<Int> = []
     var actioned: Bool = false
+    
+    init(name: String) {
+        self.name = name
+    }
 }
 
 let buildingInfoData: Array<BuildingInfo?> = [
     nil,
-    BuildingInfo(index: 1 ,name: "赤崁樓", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 1),
+    BuildingInfo(index: 1 ,name: "赤崁樓", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
     BuildingInfo(index: 2, name: "林百貨", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    nil,
-    nil
+    BuildingInfo(index: 3, name: "八五大樓", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
+    BuildingInfo(index: 4, name: "合興車站", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
+    BuildingInfo(index: 5, name: "國父紀念館", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
+    BuildingInfo(index: 6, name: "安平古堡", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
+    BuildingInfo(index: 7, name: "巴比倫空中花園", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
+    BuildingInfo(index: 8, name: "慶修院", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
+    BuildingInfo(index: 9, name: "成大榕園", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
+    BuildingInfo(index: 10, name: "新埔柿餅工廠", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
+    BuildingInfo(index: 11, name: "巨石陣", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
+    BuildingInfo(index: 12, name: "成大牌坊", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
+    BuildingInfo(index: 13, name: "黑帝斯神殿", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
+    BuildingInfo(index: 14, name: "教堂", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
+    BuildingInfo(index: 15, name: "中目黑星巴克", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0)
 ]
 
 var currentInfo: BuildingInfo?
 // 擲骰 -> 玩家 -> 電腦
 var currentRound: String = "擲骰"
 
-var playerStatus = PlayerStatus()
-var computerStatus = PlayerStatus()
+var playerStatus = PlayerStatus(name: "玩家")
+var computerStatus = PlayerStatus(name: "電腦")
 
 let chessPlayer = UIImageView()
 let chessComputer = UIImageView()
@@ -92,6 +95,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var infoCardBuildingTitle: UILabel!
     @IBOutlet weak var infoCardUpperView: UIView!
     @IBOutlet weak var infoCardBuyBtn: UIButton!
+    @IBOutlet weak var roundLabel: UILabel!
+    @IBOutlet weak var roundImageView: UIImageView!
     
     
     override func viewDidLoad() {
@@ -110,25 +115,18 @@ class ViewController: UIViewController {
         infoCardBuildingTitleG = infoCardBuildingTitle
         infoCardBuyBtnG = infoCardBuyBtn
         
-        // 玩家電腦初始化
-        playerStatus.name = "玩家"
-        computerStatus.name = "電腦"
-        
-        // money init
-        setMoney()
-        
-        // background init
+        // 背景樣式初始化
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.frame
-        gradientLayer.colors = [CGColor(srgbRed: 250/255, green: 255/255, blue: 209/255, alpha: 1), CGColor(srgbRed: 161/255, green: 255/255, blue: 206/255, alpha: 1)]
+        gradientLayer.colors = [CGColor(srgbRed: 198/255, green: 255/255, blue: 221/255, alpha: 1), CGColor(srgbRed: 251/255, green: 215/255, blue: 134/255, alpha: 1)]
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
         view.layer.insertSublayer(gradientLayer, at: 0)
         
-        // card init
+        // 卡片樣式初始化
         self.infoCardInit()
         
-        // tile init
+        // 地板樣式初始化
         for i in 0..<buildingInfoData.count {
             let centerHorizon = tileUIView.center.y
             
@@ -153,17 +151,45 @@ class ViewController: UIViewController {
             }
         }
         
-        
-        // chess init
-        chessPlayer.frame = CGRect(x: 0, y: 0, width: 25, height: 50)
-        chessPlayer.backgroundColor = .red
-        tileUIView.addSubview(chessPlayer)
+        // 棋子樣式初始化
         chessComputer.frame = CGRect(x: 0, y: 0, width: 25, height: 50)
-        chessComputer.backgroundColor = .blue
+        chessComputer.image = UIImage(named: "電腦")
         tileUIView.addSubview(chessComputer)
-        // chess position init
-//        playerStatus.currentPosition = 1
+        chessPlayer.frame = CGRect(x: 0, y: 0, width: 25, height: 50)
+        chessPlayer.image = UIImage(named: "玩家")
+        tileUIView.addSubview(chessPlayer)
+        
+        // 資料整體初始化
+        dataInitialize()
+    }
+    
+    func dataInitialize() {
+        let actioned = false
+        let initPos = 0
+        let initMoney = 1000
+        playerStatus.actioned = actioned
+        playerStatus.currentPosition = initPos
+        playerStatus.money = initMoney
+        computerStatus.actioned = actioned
+        computerStatus.currentPosition = initPos
+        computerStatus.money = initMoney
+        
+        buildingInfoData.forEach { building in
+            if let building = building {
+                building.level = 0
+                building.owner = "無"
+            }
+        }
+        currentRound = "擲骰"
+        currentInfo = nil
+        
+        self.viewInitialize()
+    }
+    func viewInitialize() {
+        setMoney()
         setChessPosition()
+        setRoundView()
+        setInfoCardView()
     }
     
     func infoCardInit() {
@@ -175,7 +201,6 @@ class ViewController: UIViewController {
         infoCardUpperView.clipsToBounds = true
         infoCardUpperView.layer.cornerRadius = 12
         infoCardUpperView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        setInfoCardView()
     }
     
     // 關閉建築資訊卡片
@@ -218,10 +243,12 @@ class ViewController: UIViewController {
         if (currentRound == "擲骰") { // 玩家擲骰子
             self.dice(role: playerStatus)
             currentRound = "玩家"
+            setRoundView()
             setInfoCardView()
         } else if (currentRound == "玩家") { // 玩家結束動作給電腦
             self.dice(role: computerStatus)
             currentRound = "電腦"
+            setRoundView()
             // 判斷電腦可否買
             if let currentInfo = currentInfo,
                computerStatus.money >= currentInfo.levelCostInfo[currentInfo.level],
@@ -229,7 +256,19 @@ class ViewController: UIViewController {
                 self.purchase()
             }
             currentRound = "擲骰"
+            setRoundView()
         }
+    }
+    // 設定回合顯示
+    func setRoundView() {
+        roundLabel.text = "\(currentRound)回合"
+        if currentRound == "電腦" {
+            roundLabel.backgroundColor = UIColor(named: "ComputerColor")
+        } else {
+            roundLabel.backgroundColor = UIColor(named: "PlayerColor")
+        }
+        roundImageView.image = UIImage(named: currentRound)
+        roundImageView.contentMode = .scaleAspectFit
     }
     func dice(role: PlayerStatus) {
         let roleName: String = role.name
@@ -239,7 +278,7 @@ class ViewController: UIViewController {
         print("\(role) dice \(number)")
         role.currentPosition += number
         if role.currentPosition > 15 {
-            role.currentPosition -= 15
+            role.currentPosition -= 16
         }
         setChessPosition()
         // 設定當前卡片
@@ -251,8 +290,10 @@ class ViewController: UIViewController {
         if let currentInfo = currentInfo {
             if roleName == "玩家", currentInfo.owner == "電腦" {
                 playerStatus.money -= currentInfo.roadTollInfo[currentInfo.level]
+                computerStatus.money += currentInfo.roadTollInfo[currentInfo.level]
             } else if  roleName == "電腦", currentInfo.owner == "玩家" {
                 computerStatus.money -= currentInfo.roadTollInfo[currentInfo.level]
+                playerStatus.money += currentInfo.roadTollInfo[currentInfo.level]
             }
         }
         setMoney()
@@ -260,11 +301,25 @@ class ViewController: UIViewController {
         self.checkWinner()
     }
     func checkWinner() {
-        if playerStatus.money < 0 {
-            print("you lose")
-        } else {
-            print("you win")
+        // 判斷是否有人輸
+        guard playerStatus.money < 0 || computerStatus.money < 0 else {
+            return
         }
+        var title: String = ""
+        var message: String = ""
+        if playerStatus.money < 0 {
+            title = "你輸了QQ"
+            message = "下次會更好..."
+        } else if computerStatus.money < 0 {
+            title = "你贏了！"
+            message = "電腦覺得你很強"
+        }
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "再來一局", style: .default) { (_) in
+            self.dataInitialize()
+        }
+        controller.addAction(okAction)
+        present(controller, animated: true, completion: nil)
     }
 }
 // end of view controller
@@ -275,8 +330,10 @@ class ViewController: UIViewController {
 func setChessPosition() {
     if let tileP = getSingleTileByIndex(playerStatus.currentPosition),
        let tileC = getSingleTileByIndex(computerStatus.currentPosition) {
-        chessPlayer.frame.origin = CGPoint(x: tileP.center.x, y: tileP.center.y - 50)
-        chessComputer.frame.origin = CGPoint(x: tileC.center.x - 25, y: tileC.center.y - 50)
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.2, options: .curveEaseInOut) {
+            chessPlayer.frame.origin = CGPoint(x: tileP.center.x, y: tileP.center.y - 50 + 8)
+            chessComputer.frame.origin = CGPoint(x: tileC.center.x - 25, y: tileC.center.y - 50)
+        }
     }
 }
 
@@ -299,10 +356,14 @@ func setInfoCardView() {
        let title = infoCardBuildingTitleG,
        let buyBtn = infoCardBuyBtnG {
         if let currentInfo = currentInfo {
+            print(currentInfo.level)
+            print(currentInfo.roadTollInfo)
+            print(currentInfo.roadTollInfo[currentInfo.level])
             img.image = UIImage(named: currentInfo.name)
             title.text = currentInfo.name
             owner.text = currentInfo.owner
-            toll.text = String(currentInfo.roadTollInfo[currentInfo.level])
+//            toll.text = String(currentInfo.roadTollInfo[currentInfo.level])
+            toll.text = "e04"
             if currentInfo.level >= 3 {
                 nextToll.text = "已達最高等"
             } else {
@@ -348,10 +409,10 @@ func setInfoCardView() {
 // set money view
 func setMoney() {
     if let playerMoneyG = playerMoneyG {
-        playerMoneyG.text = String(playerStatus.money)
+        playerMoneyG.text = "$\(playerStatus.money)"
     }
     if let computerMoneyG = computerMoneyG {
-        computerMoneyG.text = String(computerStatus.money)
+        computerMoneyG.text = "$\(computerStatus.money)"
     }
 }
 
