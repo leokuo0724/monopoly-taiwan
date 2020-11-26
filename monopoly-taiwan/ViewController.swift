@@ -202,6 +202,7 @@ class ViewController: UIViewController {
         setChessPosition()
         setRoundView()
         setInfoCardView()
+        setAllTileTint()
     }
     
     func infoCardInit() {
@@ -236,6 +237,7 @@ class ViewController: UIViewController {
             playerStatus.money -= currentInfo!.levelCostInfo[currentInfo!.level]
             currentInfo!.level += 1
             playerStatus.actioned = true
+            getSingleTileByIndex(playerStatus.currentPosition)?.setTileImg()
             setMoney()
         } else if currentRound == "電腦", currentInfo!.owner != "玩家" {
             // 初次購買
@@ -245,6 +247,7 @@ class ViewController: UIViewController {
             computerStatus.money -= currentInfo!.levelCostInfo[currentInfo!.level]
             currentInfo!.level += 1
             computerStatus.actioned = true
+            getSingleTileByIndex(computerStatus.currentPosition)?.setTileImg()
             setMoney()
         }
     }
@@ -445,6 +448,15 @@ func setMoney() {
     }
 }
 
+// 設定地盤顏色
+func setAllTileTint() {
+    if let tileUIViewG = tileUIViewG {
+        let tileArray = tileUIViewG.subviews.filter{ $0 is SingleTileUIView }
+        tileArray.forEach { tile in
+            (tile as! SingleTileUIView).setTileImg()
+        }
+    }
+}
 
 // single tile class
 class SingleTileUIView: UIView {
@@ -453,7 +465,7 @@ class SingleTileUIView: UIView {
     
     func customizeInit(index: Int) {
         self.setTileIndex(index)
-        self.setTileImg()
+        self.tileImgInit()
         self.setInteractive()
     }
     
@@ -475,16 +487,27 @@ class SingleTileUIView: UIView {
         setInfoCardView()
     }
     
-    func setTileImg() {
-//        if let index = self.tileIndex, let buildingData = BuildingInfoData[index] {
-//            
-//        }
+    private func tileImgInit() {
         self.tileImage = UIImageView()
         if let tileImage = self.tileImage {
             tileImage.image = UIImage(named: "tile")
             tileImage.frame = CGRect(x: 0, y: 0, width: 96, height: 54)
             tileImage.contentMode = .scaleAspectFit
             self.addSubview(tileImage)
+        }
+    }
+    
+    func setTileImg() {
+        if let index = self.tileIndex,
+           let tileImage = self.tileImage,
+           let building = buildingInfoData[index] {
+            if building.owner == "玩家" {
+                tileImage.image = UIImage(named: "tile-玩家")
+            } else if building.owner == "電腦" {
+                tileImage.image = UIImage(named: "tile-電腦")
+            } else {
+                tileImage.image = UIImage(named: "tile")
+            }
         }
     }
     
