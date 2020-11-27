@@ -44,21 +44,21 @@ class PlayerStatus {
 
 let buildingInfoData: Array<BuildingInfo?> = [
     nil,
-    BuildingInfo(index: 1 ,name: "赤崁樓", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 2, name: "林百貨", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 3, name: "八五大樓", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 4, name: "合興車站", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 5, name: "國父紀念館", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 6, name: "安平古堡", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 7, name: "巴比倫空中花園", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 8, name: "慶修院", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 9, name: "成大榕園", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 10, name: "新埔柿餅工廠", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 11, name: "巨石陣", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 12, name: "成大牌坊", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 13, name: "黑帝斯神殿", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 14, name: "教堂", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0),
-    BuildingInfo(index: 15, name: "中目黑星巴克", levelCostInfo: [100, 500, 2000], roadTollInfo: [0, 50, 100, 500], owner: "無", level: 0)
+    BuildingInfo(index: 1 ,name: "赤崁樓", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0),
+    BuildingInfo(index: 2, name: "林百貨", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
+    BuildingInfo(index: 3, name: "八五大樓", levelCostInfo: [300, 600, 1300], roadTollInfo: [0, 150, 300, 800], owner: "無", level: 0),
+    BuildingInfo(index: 4, name: "合興車站", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
+    BuildingInfo(index: 5, name: "國父紀念館", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0),
+    BuildingInfo(index: 6, name: "安平古堡", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0),
+    BuildingInfo(index: 7, name: "巴比倫空中花園", levelCostInfo: [300, 600, 1300], roadTollInfo: [0, 150, 300, 800], owner: "無", level: 0),
+    BuildingInfo(index: 8, name: "慶修院", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
+    BuildingInfo(index: 9, name: "成大榕園", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
+    BuildingInfo(index: 10, name: "新埔柿餅工廠", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
+    BuildingInfo(index: 11, name: "巨石陣", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0),
+    BuildingInfo(index: 12, name: "成大牌坊", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
+    BuildingInfo(index: 13, name: "黑帝斯神殿", levelCostInfo: [300, 600, 1300], roadTollInfo: [0, 150, 300, 800], owner: "無", level: 0),
+    BuildingInfo(index: 14, name: "教堂", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
+    BuildingInfo(index: 15, name: "中目黑星巴克", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0)
 ]
 
 var currentInfo: BuildingInfo?
@@ -208,12 +208,18 @@ class ViewController: UIViewController {
     func infoCardInit() {
         infoCard.layer.cornerRadius = 12
         infoCard.layer.shadowColor = UIColor.black.cgColor
-        infoCard.layer.shadowOpacity = 0.4
+        infoCard.layer.shadowOpacity = 0.3
         infoCard.layer.shadowRadius = 10
         infoCard.layer.shadowOffset = CGSize(width: 0, height: 5)
         infoCardUpperView.clipsToBounds = true
         infoCardUpperView.layer.cornerRadius = 12
         infoCardUpperView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = infoCardUpperView.frame
+        gradientLayer.colors = [CGColor(srgbRed: 251/255, green: 215/255, blue: 134/255, alpha: 1), CGColor(srgbRed: 240/255, green: 136/255, blue: 125/255, alpha: 1)]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
+        infoCardUpperView.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     // 關閉建築資訊卡片
@@ -354,6 +360,17 @@ class ViewController: UIViewController {
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
     }
+    
+    @IBAction func forceReset(_ sender: Any) {
+        let controller = UIAlertController(title: "是否要重新開局？", message: "電腦：投降輸一半？", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
+        controller.addAction(cancelAction)
+        let confirmAction = UIAlertAction(title: "重新一局", style: .default) { (_) in
+            self.dataInitialize()
+        }
+        controller.addAction(confirmAction)
+        present(controller, animated: true, completion: nil)
+    }
 }
 // end of view controller
 
@@ -389,9 +406,6 @@ func setInfoCardView() {
        let title = infoCardBuildingTitleG,
        let buyBtn = infoCardBuyBtnG {
         if let currentInfo = currentInfo {
-            print(currentInfo.level)
-            print(currentInfo.roadTollInfo)
-            print(currentInfo.roadTollInfo[currentInfo.level])
             img.image = UIImage(named: currentInfo.name)
             title.text = currentInfo.name
             owner.text = currentInfo.owner
@@ -408,11 +422,13 @@ func setInfoCardView() {
                currentInfo.owner != "電腦",
                !playerStatus.actioned,
                currentRound == "玩家" {
+                buyBtn.isEnabled = true
                 buyBtn.alpha = 1
                 let cost = currentInfo.levelCostInfo[currentInfo.level]
                 buyBtn.setTitle("$\(cost) 購買", for: .normal)
                 // 錢不夠購買，按鈕 disabled
                 if cost > playerStatus.money {
+                    print(playerStatus.money)
                     buyBtn.isEnabled = false
                 }
             } else {
