@@ -8,28 +8,35 @@
 import UIKit
 
 
-
-class BuildingInfo: Codable {
+class BuildingInfo {
     let index: Int
     let name: String
     let levelCostInfo: Array<Int>
     let roadTollInfo: Array<Int>
     var owner: String
     var level: Int
+    let questions: Array<question>
     
     init(index: Int,
          name: String,
          levelCostInfo: Array<Int>,
          roadTollInfo: Array<Int>,
          owner: String,
-         level: Int) {
+         level: Int,
+         questions: Array<question>) {
         self.index = index
         self.name = name
         self.levelCostInfo = levelCostInfo
         self.roadTollInfo = roadTollInfo
         self.owner = owner
         self.level = level
+        self.questions = questions
     }
+}
+struct question {
+    var title: String
+    var options: Array<String>
+    var answer: String
 }
 class PlayerStatus {
     let name: String
@@ -44,27 +51,43 @@ class PlayerStatus {
 
 let buildingInfoData: Array<BuildingInfo?> = [
     nil,
-    BuildingInfo(index: 1 ,name: "赤崁樓", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0),
-    BuildingInfo(index: 2, name: "林百貨", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
-    BuildingInfo(index: 3, name: "八五大樓", levelCostInfo: [300, 600, 1300], roadTollInfo: [0, 150, 300, 800], owner: "無", level: 0),
-    BuildingInfo(index: 4, name: "合興車站", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
-    BuildingInfo(index: 5, name: "國父紀念館", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0),
-    BuildingInfo(index: 6, name: "安平古堡", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0),
-    BuildingInfo(index: 7, name: "巴比倫空中花園", levelCostInfo: [300, 600, 1300], roadTollInfo: [0, 150, 300, 800], owner: "無", level: 0),
-    BuildingInfo(index: 8, name: "慶修院", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
-    BuildingInfo(index: 9, name: "成大榕園", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
-    BuildingInfo(index: 10, name: "新埔柿餅工廠", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
-    BuildingInfo(index: 11, name: "巨石陣", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0),
-    BuildingInfo(index: 12, name: "成大牌坊", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
-    BuildingInfo(index: 13, name: "黑帝斯神殿", levelCostInfo: [300, 600, 1300], roadTollInfo: [0, 150, 300, 800], owner: "無", level: 0),
-    BuildingInfo(index: 14, name: "教堂", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0),
-    BuildingInfo(index: 15, name: "中目黑星巴克", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0)
+    BuildingInfo(index: 1 ,name: "赤崁樓", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 2, name: "林百貨", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 3, name: "八五大樓", levelCostInfo: [300, 600, 1300], roadTollInfo: [0, 150, 300, 800], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 4, name: "合興車站", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 5, name: "國父紀念館", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 6, name: "安平古堡", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 7, name: "巴比倫空中花園", levelCostInfo: [300, 600, 1300], roadTollInfo: [0, 150, 300, 800], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 8, name: "慶修院", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 9, name: "成大榕園", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 10, name: "新埔柿餅工廠", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 11, name: "巨石陣", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 12, name: "成大牌坊", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 13, name: "黑帝斯神殿", levelCostInfo: [300, 600, 1300], roadTollInfo: [0, 150, 300, 800], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 14, name: "教堂", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+    BuildingInfo(index: 15, name: "中目黑星巴克", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0,
+                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")])
 ]
 
 var currentInfo: BuildingInfo?
 // 擲骰 -> 玩家 -> 電腦
 var currentRound: String = "擲骰"
 var isCanNextRound: Bool = true
+var isQnA: Bool = false
 
 var playerStatus = PlayerStatus(name: "玩家")
 var computerStatus = PlayerStatus(name: "電腦")
@@ -99,7 +122,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var roundLabel: UILabel!
     @IBOutlet weak var roundImageView: UIImageView!
     @IBOutlet weak var diceImageView: UIImageView!
-    
+    @IBOutlet weak var questionRootView: UIView!
+    @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var optionBtn0: UIButton!
+    @IBOutlet weak var optionBtn1: UIButton!
+    @IBOutlet weak var optionBtn2: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,6 +180,11 @@ class ViewController: UIViewController {
             }
         }
         
+        // 問題題目初始化
+        questionLabel.lineBreakMode = .byWordWrapping
+        questionLabel.numberOfLines = 0
+        setDisplayQuestion()
+        
         // 棋子樣式初始化
         chessComputer.frame = CGRect(x: 0, y: 0, width: 25, height: 50)
         chessComputer.image = UIImage(named: "電腦")
@@ -171,6 +203,9 @@ class ViewController: UIViewController {
         diceImageView.animationRepeatCount = 2
         diceImageView.image = diceImages.last
         
+        // 問題選項樣式初始化
+        setOptionBtnsStyle(buttons: [optionBtn0,optionBtn1,optionBtn2])
+
         // 資料整體初始化
         dataInitialize()
     }
@@ -202,6 +237,7 @@ class ViewController: UIViewController {
         setChessPosition()
         setRoundView()
         setInfoCardView()
+        setQuestion()
         setAllTileTint()
     }
     
@@ -318,6 +354,7 @@ class ViewController: UIViewController {
             currentInfo = buildingInfoData[role.currentPosition]
             if currentRound == "玩家" {
                 setInfoCardView()
+                self.setQuestion()
                 // 玩家此時可決定跳過進行下回合，電腦則等判斷完要不要買地產
                 isCanNextRound = true
             }
@@ -371,10 +408,53 @@ class ViewController: UIViewController {
         controller.addAction(confirmAction)
         present(controller, animated: true, completion: nil)
     }
+    
+    @IBAction func selectOption(_ sender: UIButton) {
+        if let text = sender.titleLabel?.text {
+            print(text)
+        }
+    }
+    
+    // 設定問題與題目
+    func setQuestion() {
+        if let currentInfo = currentInfo {
+            let index = Int.random(in: 0...currentInfo.questions.count - 1)
+            let selectedQ =  currentInfo.questions[index]
+            // 設定題目
+            questionLabel.text = selectedQ.title
+            
+            var optionsArr: Array<String> = []
+            optionsArr.append(contentsOf: selectedQ.options)
+            optionsArr.append(selectedQ.answer)
+            optionsArr.shuffle()
+            print(optionsArr)
+            
+            // 設定問題
+            optionBtn0.setTitle(optionsArr[0], for: .normal)
+            optionBtn1.setTitle(optionsArr[1], for: .normal)
+            optionBtn2.setTitle(optionsArr[2], for: .normal)
+        } else {
+            questionLabel.text = ""
+            optionBtn0.setTitle("", for: .normal)
+            optionBtn1.setTitle("", for: .normal)
+            optionBtn2.setTitle("", for: .normal)
+        }
+    }
+    // 設定問題是否出現
+    func setDisplayQuestion() {
+        questionRootView.isHidden = !isQnA
+    }
 }
 // end of view controller
 
-
+// 設定答案樣式
+func setOptionBtnsStyle(buttons: Array<UIButton>) {
+    for btn in buttons {
+        btn.layer.borderWidth = 1
+        btn.layer.borderColor = CGColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
+        btn.layer.cornerRadius = btn.frame.height/2
+    }
+}
 
 // 設定棋子位置
 func setChessPosition() {
@@ -454,7 +534,7 @@ func setInfoCardView() {
     }
 }
 
-// set money view
+// 設定金幣顯示
 func setMoney() {
     if let playerMoneyG = playerMoneyG {
         playerMoneyG.text = "$\(playerStatus.money)"
@@ -537,7 +617,3 @@ class SingleTileUIView: UIView {
         }
     }
 }
-
-
-
-// if let tileIndex = (tileUIView.subviews[0] as! SingleTileUIView).tileIndex {}
