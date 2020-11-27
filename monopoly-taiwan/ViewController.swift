@@ -43,6 +43,7 @@ class PlayerStatus {
     var currentPosition: Int = 0
     var money: Int = 1000
     var actioned: Bool = false
+    var answered: Bool = false
     
     init(name: String) {
         self.name = name
@@ -84,6 +85,7 @@ let buildingInfoData: Array<BuildingInfo?> = [
 ]
 
 var currentInfo: BuildingInfo?
+var currentQuestionIndex: Int = 0
 // 擲骰 -> 玩家 -> 電腦
 var currentRound: String = "擲骰"
 var isCanNextRound: Bool = true
@@ -266,9 +268,9 @@ class ViewController: UIViewController {
     
     // 購買建築
     @IBAction func buyBuilding(_ sender: Any) {
-        self.purchase()
-        // 更新畫面: 卡片、金錢
-        setInfoCardView()
+        // 進入回答問題
+        isQnA = true
+        setDisplayQuestion()
     }
     func purchase() {
         if currentRound == "玩家", currentInfo!.owner != "電腦" {
@@ -337,6 +339,7 @@ class ViewController: UIViewController {
         let roleName: String = role.name
         
         role.actioned = false
+        role.answered = false
         let number = Int.random(in: 1...6)
         
         // 播放骰子動畫
@@ -410,8 +413,17 @@ class ViewController: UIViewController {
     }
     
     @IBAction func selectOption(_ sender: UIButton) {
-        if let text = sender.titleLabel?.text {
-            print(text)
+        if let text = sender.titleLabel?.text,
+           let currentInfo = currentInfo {
+            let answer = currentInfo.questions[currentQuestionIndex].answer
+            // 答案是否吻合
+            if (text == answer) {
+                self.purchase()
+                setInfoCardView()
+            }
+            isQnA = false
+            playerStatus.answered = true
+            setDisplayQuestion()
         }
     }
     
@@ -419,6 +431,8 @@ class ViewController: UIViewController {
     func setQuestion() {
         if let currentInfo = currentInfo {
             let index = Int.random(in: 0...currentInfo.questions.count - 1)
+            // 設定題目索引
+            currentQuestionIndex = index
             let selectedQ =  currentInfo.questions[index]
             // 設定題目
             questionLabel.text = selectedQ.title
@@ -427,7 +441,6 @@ class ViewController: UIViewController {
             optionsArr.append(contentsOf: selectedQ.options)
             optionsArr.append(selectedQ.answer)
             optionsArr.shuffle()
-            print(optionsArr)
             
             // 設定問題
             optionBtn0.setTitle(optionsArr[0], for: .normal)
@@ -507,7 +520,7 @@ func setInfoCardView() {
                 let cost = currentInfo.levelCostInfo[currentInfo.level]
                 buyBtn.setTitle("$\(cost) 購買", for: .normal)
                 // 錢不夠購買，按鈕 disabled
-                if cost > playerStatus.money {
+                if cost > playerStatus.money || playerStatus.answered {
                     print(playerStatus.money)
                     buyBtn.isEnabled = false
                 }
