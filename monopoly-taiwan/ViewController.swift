@@ -129,6 +129,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var optionBtn0: UIButton!
     @IBOutlet weak var optionBtn1: UIButton!
     @IBOutlet weak var optionBtn2: UIButton!
+    @IBOutlet weak var notificationView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -401,6 +402,7 @@ class ViewController: UIViewController {
         present(controller, animated: true, completion: nil)
     }
     
+    // 重新開始遊戲
     @IBAction func forceReset(_ sender: Any) {
         let controller = UIAlertController(title: "是否要重新開局？", message: "電腦：投降輸一半？", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
@@ -412,6 +414,7 @@ class ViewController: UIViewController {
         present(controller, animated: true, completion: nil)
     }
     
+    // 點擊答案選項
     @IBAction func selectOption(_ sender: UIButton) {
         if let text = sender.titleLabel?.text,
            let currentInfo = currentInfo {
@@ -420,10 +423,14 @@ class ViewController: UIViewController {
             if (text == answer) {
                 self.purchase()
                 setInfoCardView()
+                self.showNotification(isCorrect: true)
+            } else {
+                self.showNotification(isCorrect: false)
             }
             isQnA = false
             playerStatus.answered = true
             setDisplayQuestion()
+            setInfoCardView()
         }
     }
     
@@ -455,7 +462,42 @@ class ViewController: UIViewController {
     }
     // 設定問題是否出現
     func setDisplayQuestion() {
-        questionRootView.isHidden = !isQnA
+        // 要先解除隱藏才有動畫
+        if isQnA { questionRootView.isHidden = false }
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
+            if isQnA {
+                self.questionRootView.alpha = 1
+            } else {
+                self.questionRootView.alpha = 0
+            }
+        } completion: { (_) in
+            self.questionRootView.isHidden = !isQnA
+        }
+
+    }
+    // 設定答案正確與否提示
+    func showNotification(isCorrect: Bool) {
+        let label = notificationView.subviews.filter({ $0 is UILabel })[0]
+        let image = notificationView.subviews.filter({ $0 is UIImageView })[0]
+
+        if isCorrect {
+            (label as! UILabel).text = "答案正確，購買成功！"
+            (label as! UILabel).textColor = UIColor(named: "CorrectColor")
+            (image as! UIImageView).image = UIImage(named: "correct")
+        } else {
+            (label as! UILabel).text = "答案錯誤，購買失敗！"
+            (label as! UILabel).textColor = UIColor(named: "IncorrectColor")
+            (image as! UIImageView).image = UIImage(named: "incorrect")
+        }
+        
+        // 動畫
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.6, delay: 0, options: .curveEaseOut) {
+            self.notificationView.frame.origin.y = 342
+        } completion: { (_) in
+            UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.6, delay: 0.8, options: .curveEaseOut) {
+                self.notificationView.frame.origin.y = 420
+            }
+        }
     }
 }
 // end of view controller
