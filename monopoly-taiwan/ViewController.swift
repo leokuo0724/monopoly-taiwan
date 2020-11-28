@@ -570,11 +570,12 @@ class ViewController: UIViewController {
     // 顯示金錢變化
     func showMoneyChangeLabel(label: UILabel, difference :Int) {
         if difference < 0 {
+            label.text = "-$\(-difference)"
             label.textColor = UIColor(named: "IncorrectColor")
         } else {
+            label.text = "+$\(difference)"
             label.textColor = UIColor(named: "CorrectColor")
         }
-        label.text = String(difference)
         
         UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0, options: .curveEaseOut) {
             label.alpha = 1
