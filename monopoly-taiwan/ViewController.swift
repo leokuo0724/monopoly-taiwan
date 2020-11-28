@@ -53,35 +53,94 @@ class PlayerStatus {
 let buildingInfoData: Array<BuildingInfo?> = [
     nil,
     BuildingInfo(index: 1 ,name: "赤崁樓", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城"),
+                    question(title: "赤崁樓前九座贔屭碑是為了紀念平定什麼事件而立？", options: ["戴潮春事件", "朱一貴事件"], answer: "林爽文事件"),
+                    question(title: "身為台南人的小明，參觀赤崁樓的票價為？", options: ["50", "100"], answer: "免費"),
+                 ]),
     BuildingInfo(index: 2, name: "林百貨", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "林百貨的俗稱為？", options: ["菊元百貨", "末廣町"], answer: "五層樓仔"),
+                    question(title: "林百貨頂樓有什麼設施？", options: ["十字架", "佛壇"], answer: "神社"),
+                    question(title: "「林」一字的日文發音為？", options: ["Kobayashi", "Lin"], answer: "Hayashi"),
+                 ]),
     BuildingInfo(index: 3, name: "八五大樓", levelCostInfo: [300, 600, 1300], roadTollInfo: [0, 150, 300, 800], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "八五大樓的高度為？", options: ["508公尺", "828公尺"], answer: "378公尺"),
+                    question(title: "八五大樓位於高雄哪個行政區？", options: ["新興區", "三民區"], answer: "苓雅區"),
+                    question(title: "八五大樓建築外觀是以哪個漢字為概念設計？", options: ["「雄」", "甘"], answer: "高")
+                 ]),
     BuildingInfo(index: 4, name: "合興車站", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "合興車站位於哪一縣市？", options: ["新竹市", "新北市"], answer: "新竹縣"),
+                    question(title: "合興車站有一獨特的設計，請問這個設計是？", options: ["燕返式", "遞迴函式"], answer: "折返式"),
+                    question(title: "合興車站原本是為了運輸什麼原料而設立的？", options: ["鋼鐵", "木頭"], answer: "水泥")
+                 ]),
     BuildingInfo(index: 5, name: "國父紀念館", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "國父紀念館是為了要紀念誰而設立的？", options: ["蔣中正", "蔣介石"], answer: "孫逸仙"),
+                    question(title: "國父紀念館外觀是由哪兩種配色而成？", options: ["藍白", "紅綠"], answer: "黃紅"),
+                    question(title: "國父紀念館之匾額，是誰題字的？", options: ["蔣經國", "蔣宋美齡"], answer: "蔣中正")
+                 ]),
     BuildingInfo(index: 6, name: "安平古堡", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "安平古堡的舊稱為？", options: ["紅毛城", "普羅民遮城"], answer: "熱蘭遮城"),
+                    question(title: "下列哪個選項並非安平的特色？", options: ["劍獅", "蝦捲"], answer: "肉圓"),
+                    question(title: "安平古堡內有哪位名人的雕像？", options: ["施琅", "陳永華"], answer: "鄭成功"),
+                    question(title: "台南安平的舊稱為？", options: ["鹿耳門", "打狗"], answer: "大員"),
+                 ]),
     BuildingInfo(index: 7, name: "巴比倫空中花園", levelCostInfo: [300, 600, 1300], roadTollInfo: [0, 150, 300, 800], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "下列哪個選項不是「古代世界七大奇蹟」？", options: ["巴比倫空中花園", "太陽神銅像"], answer: "黑帝斯神殿"),
+                    question(title: "相傳巴比倫空中花園為哪個國王下令建造的？", options: ["尼可拉斯二世", "尼菩薩三世"], answer: "尼布甲尼撒二世"),
+                    question(title: "相傳巴比倫空中花園於何時建造的？", options: ["西元六世紀", "西元十六世紀"], answer: "西元前六世紀")
+                 ]),
     BuildingInfo(index: 8, name: "慶修院", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "慶修院的舊稱為？", options: ["般若波羅蜜布教所", "吉野家牛丼"], answer: "真言宗吉野布教所"),
+                    question(title: "慶修院祭拜諸多神像，下咧哪個選項為其中一尊？", options: ["漢堡王像", "大阪王將"], answer: "不動明王像"),
+                    question(title: "慶修院位於哪個縣市？", options: ["雲林縣", "苗栗縣"], answer: "花蓮縣")
+                 ]),
     BuildingInfo(index: 9, name: "成大榕園", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "哪家企業以成大榕園作為其Logo標誌？", options: ["國泰航空", "台積電"], answer: "國泰人壽"),
+                    question(title: "成大榕園旁的羅馬式建築，現為工設系館。請問在日治時期時是什麼用途？", options: ["監獄", "銀行"], answer: "兵舍"),
+                    question(title: "哪件事不能在成大榕園做？", options: ["拍畢業照", "遛狗"], answer: "打樂樂棒球")
+                 ]),
     BuildingInfo(index: 10, name: "新埔柿餅工廠", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "新埔地區有什麼加分的天然要素，讓柿餅成為當地特產？", options: ["龍捲風", "颱風"], answer: "九降風"),
+                    question(title: "下列哪個程序並非古法製作柿餅的過程？", options: ["日曬風乾", "擠壓整形"], answer: "拋光打蠟"),
+                    question(title: "哪個時期是柿餅產收季節？", options: ["鬼月", "二月到六月"], answer: "九月至一月")
+                 ]),
     BuildingInfo(index: 11, name: "巨石陣", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "巨石陣位於哪個國家？", options: ["智利", "美國"], answer: "英國"),
+                    question(title: "下列選項哪個不是巨石陣的別稱？", options: ["索爾茲伯里石環", "斯通亨治石欄"], answer: "黃道石環"),
+                 ]),
     BuildingInfo(index: 12, name: "成大牌坊", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "下列哪個選項不是成大校園的裝置藝術？", options: ["飛撲", "詩人"], answer: "咩噗"),
+                    question(title: "成大牌坊上有四字，請問是？", options: ["「親愛精誠」", "「你各位啊」"], answer: "「窮理致知」"),
+                    question(title: "成大校門口前有一條學生覓食的街道，名字是？", options: ["芝麻街", "撲街"], answer: "育樂街")
+                 ]),
     BuildingInfo(index: 13, name: "黑帝斯神殿", levelCostInfo: [300, 600, 1300], roadTollInfo: [0, 150, 300, 800], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "黑帝斯為主宰何處的神？", options: ["月亮", "海洋"], answer: "冥界"),
+                    question(title: "黑帝斯的父親為？", options: ["宙斯", "波賽頓"], answer: "克羅諾斯"),
+                    question(title: "黑帝斯的形象旁通常會有一隻動物，看守冥界入口，這動物是？", options: ["地獄倒霉鬼", "地獄喵喵"], answer: "地獄三頭犬")
+                 ]),
     BuildingInfo(index: 14, name: "教堂", levelCostInfo: [100, 200, 500], roadTollInfo: [0, 50, 100, 300], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")]),
+                 questions: [
+                    question(title: "教堂的主要用途為？", options: ["躲貓貓", "睡覺"], answer: "敬拜神"),
+                    question(title: "下列何者為位於台灣之教堂？", options: ["科隆大教堂", "光之教堂"], answer: "路思義教堂")
+                 ]),
     BuildingInfo(index: 15, name: "中目黑星巴克", levelCostInfo: [200, 400, 900], roadTollInfo: [0, 100, 200, 500], owner: "無", level: 0,
-                 questions: [question(title: "赤崁樓的舊稱為？", options: ["普羅米修斯城", "普羅大眾城"], answer: "普羅民遮城")])
+                 questions: [
+                    question(title: "中目黑星巴克位於哪個地區？", options: ["名古屋", "大阪"], answer: "東京"),
+                    question(title: "星巴克的英文是？", options: ["Starfish", "StarWar"], answer: "Starbucks"),
+                    question(title: "星巴克的發源地為？", options: ["水牛城", "矽谷"], answer: "西雅圖")
+                 ])
 ]
 
 var currentInfo: BuildingInfo?
