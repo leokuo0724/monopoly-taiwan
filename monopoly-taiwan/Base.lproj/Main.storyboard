@@ -17,6 +17,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCg-XG-iav">
+                                <rect key="frame" x="102" y="119" width="67" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" name="CorrectColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfd-fy-tnh">
+                                <rect key="frame" x="102" y="44" width="67" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" name="IncorrectColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FGy-en-k8d">
                                 <rect key="frame" x="60" y="44" width="109" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -201,7 +215,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="玩家" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAO-dC-y8r">
                                 <rect key="frame" x="60" y="23" width="42" height="21"/>
@@ -312,6 +326,7 @@
                     </view>
                     <connections>
                         <outlet property="computerMoney" destination="USd-09-f6G" id="sHL-UP-v7c"/>
+                        <outlet property="computerMoneyChangeLabel" destination="ZCg-XG-iav" id="WL6-Qh-C9X"/>
                         <outlet property="diceImageView" destination="TGO-B7-uE7" id="SgB-Xk-TCA"/>
                         <outlet property="infoCard" destination="VvB-uz-7hj" id="ZiR-58-ANO"/>
                         <outlet property="infoCardBuildingTitle" destination="YdI-hQ-wUj" id="c7t-eE-Vo8"/>
@@ -326,6 +341,7 @@
                         <outlet property="optionBtn1" destination="CHm-bP-eEZ" id="7Yo-g3-1Mo"/>
                         <outlet property="optionBtn2" destination="s4W-Zh-Y2s" id="vPg-mD-dsY"/>
                         <outlet property="playerMoney" destination="UGm-5c-1lX" id="Vwe-EI-Wdu"/>
+                        <outlet property="playerMoneyChangeLabel" destination="Tfd-fy-tnh" id="R3x-1p-R4m"/>
                         <outlet property="questionLabel" destination="5Ln-LO-j5V" id="5Th-cf-Hyq"/>
                         <outlet property="questionRootView" destination="QFJ-z8-0ao" id="0wj-Ia-Xme"/>
                         <outlet property="roundImageView" destination="t50-Tu-amU" id="d75-IY-lDy"/>
@@ -348,6 +364,9 @@
         </namedColor>
         <namedColor name="CorrectColor">
             <color red="0.21199999749660492" green="0.60799998044967651" blue="0.3880000114440918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="IncorrectColor">
+            <color red="0.85900002717971802" green="0.20800000429153442" blue="0.20800000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="PlayColor">
             <color red="0.98400002717971802" green="0.84299999475479126" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

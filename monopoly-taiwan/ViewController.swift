@@ -189,6 +189,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var optionBtn1: UIButton!
     @IBOutlet weak var optionBtn2: UIButton!
     @IBOutlet weak var notificationView: UIView!
+    @IBOutlet weak var playerMoneyChangeLabel: UILabel!
+    @IBOutlet weak var computerMoneyChangeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -339,6 +341,7 @@ class ViewController: UIViewController {
                 currentInfo!.owner = currentRound
             }
             playerStatus.money -= currentInfo!.levelCostInfo[currentInfo!.level]
+            self.showMoneyChangeLabel(label: playerMoneyChangeLabel, difference: -currentInfo!.levelCostInfo[currentInfo!.level])
             currentInfo!.level += 1
             playerStatus.actioned = true
             getSingleTileByIndex(playerStatus.currentPosition)?.setTileImg()
@@ -349,6 +352,7 @@ class ViewController: UIViewController {
                 currentInfo!.owner = currentRound
             }
             computerStatus.money -= currentInfo!.levelCostInfo[currentInfo!.level]
+            self.showMoneyChangeLabel(label: computerMoneyChangeLabel, difference: -currentInfo!.levelCostInfo[currentInfo!.level])
             currentInfo!.level += 1
             computerStatus.actioned = true
             getSingleTileByIndex(computerStatus.currentPosition)?.setTileImg()
@@ -429,10 +433,14 @@ class ViewController: UIViewController {
         if let currentInfo = currentInfo {
             if roleName == "玩家", currentInfo.owner == "電腦" {
                 playerStatus.money -= currentInfo.roadTollInfo[currentInfo.level]
+                self.showMoneyChangeLabel(label: playerMoneyChangeLabel, difference: -currentInfo.roadTollInfo[currentInfo.level])
                 computerStatus.money += currentInfo.roadTollInfo[currentInfo.level]
+                self.showMoneyChangeLabel(label: computerMoneyChangeLabel, difference: currentInfo.roadTollInfo[currentInfo.level])
             } else if  roleName == "電腦", currentInfo.owner == "玩家" {
                 computerStatus.money -= currentInfo.roadTollInfo[currentInfo.level]
+                self.showMoneyChangeLabel(label: computerMoneyChangeLabel, difference: -currentInfo.roadTollInfo[currentInfo.level])
                 playerStatus.money += currentInfo.roadTollInfo[currentInfo.level]
+                self.showMoneyChangeLabel(label: playerMoneyChangeLabel, difference: currentInfo.roadTollInfo[currentInfo.level])
             }
         }
         setMoney()
@@ -558,6 +566,36 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    // 顯示金錢變化
+    func showMoneyChangeLabel(label: UILabel, difference :Int) {
+        if difference < 0 {
+            label.textColor = UIColor(named: "IncorrectColor")
+        } else {
+            label.textColor = UIColor(named: "CorrectColor")
+        }
+        label.text = String(difference)
+        
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0, options: .curveEaseOut) {
+            label.alpha = 1
+            if label == self.playerMoneyChangeLabel {
+                label.frame.origin.y = 23
+            } else if label == self.computerMoneyChangeLabel {
+                label.frame.origin.y = 98
+            }
+        } completion: { (_) in
+            UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.8, delay: 0.8, options: .curveEaseOut) {
+                label.alpha = 0
+            } completion: { (_) in
+                if label == self.playerMoneyChangeLabel {
+                    label.frame.origin.y = 44
+                } else if label == self.computerMoneyChangeLabel {
+                    label.frame.origin.y = 119
+                }
+            }
+        }
+    }
+    
 }
 // end of view controller
 
