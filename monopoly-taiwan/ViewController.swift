@@ -514,9 +514,9 @@ class ViewController: UIViewController {
             infoCardOwner.text = currentInfo.owner
             infoCardCurrentToll.text = String(currentInfo.roadTollInfo[currentInfo.level])
             if currentInfo.level >= 3 {
-                infoCardCurrentToll.text = "已達最高等"
+                infoCardNextToll.text = "已達最高等"
             } else {
-                infoCardCurrentToll.text = String(currentInfo.roadTollInfo[currentInfo.level + 1])
+                infoCardNextToll.text = String(currentInfo.roadTollInfo[currentInfo.level + 1])
             }
             
             // 如果玩家剛好在此格、建築未達最高等、玩家未行動、此格未屬於電腦。則顯示按鈕
