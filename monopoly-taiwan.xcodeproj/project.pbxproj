@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EBAAF3A42573C86F00919663 /* BuildingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF3A32573C86F00919663 /* BuildingInfo.swift */; };
+		EBAAF3A72573CA3500919663 /* PlayerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF3A62573CA3500919663 /* PlayerStatus.swift */; };
+		EBAAF3AB2573D4B900919663 /* buildingInfoData.json in Resources */ = {isa = PBXBuildFile; fileRef = EBAAF3AA2573D4B800919663 /* buildingInfoData.json */; };
+		EBAAF3AE2573D58100919663 /* BuildingInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF3AD2573D58100919663 /* BuildingInfoData.swift */; };
+		EBAAF3B12573E35400919663 /* SingleTileUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF3B02573E35400919663 /* SingleTileUIView.swift */; };
 		EBFE9904256BF36200A71B4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFE9903256BF36200A71B4B /* AppDelegate.swift */; };
 		EBFE9906256BF36200A71B4B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFE9905256BF36200A71B4B /* SceneDelegate.swift */; };
 		EBFE9908256BF36200A71B4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFE9907256BF36200A71B4B /* ViewController.swift */; };
@@ -16,6 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EBAAF3A32573C86F00919663 /* BuildingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingInfo.swift; sourceTree = "<group>"; };
+		EBAAF3A62573CA3500919663 /* PlayerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatus.swift; sourceTree = "<group>"; };
+		EBAAF3AA2573D4B800919663 /* buildingInfoData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buildingInfoData.json; sourceTree = "<group>"; };
+		EBAAF3AD2573D58100919663 /* BuildingInfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingInfoData.swift; sourceTree = "<group>"; };
+		EBAAF3B02573E35400919663 /* SingleTileUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTileUIView.swift; sourceTree = "<group>"; };
 		EBFE9900256BF36200A71B4B /* monopoly-taiwan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "monopoly-taiwan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFE9903256BF36200A71B4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBFE9905256BF36200A71B4B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,13 +66,18 @@
 		EBFE9902256BF36200A71B4B /* monopoly-taiwan */ = {
 			isa = PBXGroup;
 			children = (
+				EBAAF3A62573CA3500919663 /* PlayerStatus.swift */,
 				EBFE9903256BF36200A71B4B /* AppDelegate.swift */,
 				EBFE9905256BF36200A71B4B /* SceneDelegate.swift */,
 				EBFE9907256BF36200A71B4B /* ViewController.swift */,
+				EBAAF3B02573E35400919663 /* SingleTileUIView.swift */,
+				EBAAF3AD2573D58100919663 /* BuildingInfoData.swift */,
+				EBAAF3A32573C86F00919663 /* BuildingInfo.swift */,
 				EBFE9909256BF36200A71B4B /* Main.storyboard */,
 				EBFE990C256BF36500A71B4B /* Assets.xcassets */,
 				EBFE990E256BF36500A71B4B /* LaunchScreen.storyboard */,
 				EBFE9911256BF36500A71B4B /* Info.plist */,
+				EBAAF3AA2573D4B800919663 /* buildingInfoData.json */,
 			);
 			path = "monopoly-taiwan";
 			sourceTree = "<group>";
@@ -125,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBFE9910256BF36500A71B4B /* LaunchScreen.storyboard in Resources */,
+				EBAAF3AB2573D4B900919663 /* buildingInfoData.json in Resources */,
 				EBFE990D256BF36500A71B4B /* Assets.xcassets in Resources */,
 				EBFE990B256BF36200A71B4B /* Main.storyboard in Resources */,
 			);
@@ -138,8 +154,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBFE9908256BF36200A71B4B /* ViewController.swift in Sources */,
+				EBAAF3AE2573D58100919663 /* BuildingInfoData.swift in Sources */,
 				EBFE9904256BF36200A71B4B /* AppDelegate.swift in Sources */,
+				EBAAF3A72573CA3500919663 /* PlayerStatus.swift in Sources */,
+				EBAAF3B12573E35400919663 /* SingleTileUIView.swift in Sources */,
 				EBFE9906256BF36200A71B4B /* SceneDelegate.swift in Sources */,
+				EBAAF3A42573C86F00919663 /* BuildingInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
