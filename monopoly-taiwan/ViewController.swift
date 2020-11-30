@@ -15,23 +15,14 @@ var currentQuestionIndex: Int = 0
 var currentRound: String = "擲骰"
 var isCanNextRound: Bool = true
 var isQnA: Bool = false
+var timer: Timer = Timer()
+var timeCounter: Int = 10
 
 var playerStatus = PlayerStatus(name: "玩家")
 var computerStatus = PlayerStatus(name: "電腦")
 
 let chessPlayer = UIImageView()
 let chessComputer = UIImageView()
-
-//var tileUIViewG: UIView?
-//var infoCardG: UIView?
-//var playerMoneyG: UILabel?
-//var computerMoneyG: UILabel?
-//var infoCardImgG: UIImageView?
-//var infoCardOwnerG: UILabel?
-//var infoCardCurrentTollG: UILabel?
-//var infoCardNextTollG: UILabel?
-//var infoCardBuildingTitleG: UILabel?
-//var infoCardBuyBtnG: UIButton?
 
 class ViewController: UIViewController {
 
@@ -57,6 +48,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var notificationView: UIView!
     @IBOutlet weak var playerMoneyChangeLabel: UILabel!
     @IBOutlet weak var computerMoneyChangeLabel: UILabel!
+    @IBOutlet weak var timeCountBar: UIView!
+    @IBOutlet weak var timeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -299,6 +292,15 @@ class ViewController: UIViewController {
             role.currentPosition += number
             if role.currentPosition > 15 {
                 role.currentPosition -= 16
+                // 經過起點給錢
+                if currentRound == "玩家" {
+                    playerStatus.money += 100
+                    self.showMoneyChangeLabel(label: self.playerMoneyChangeLabel, difference: 100)
+                } else if currentRound == "電腦" {
+                    computerStatus.money += 100
+                    self.showMoneyChangeLabel(label: self.computerMoneyChangeLabel, difference: 100)
+                }
+                self.setMoney()
             }
             self.setChessPosition()
             // 設定當前卡片
@@ -382,11 +384,14 @@ class ViewController: UIViewController {
             playerStatus.answered = true
             setDisplayQuestion()
             setInfoCardView()
+            // 回答了問題就停止計時
+            resetTimer()
         }
     }
     
     // 設定問題與題目
     func setQuestion() {
+        print("setQuestion")
         if let currentInfo = currentInfo {
             let index = Int.random(in: 0...currentInfo.questions.count - 1)
             // 設定題目索引
@@ -413,8 +418,18 @@ class ViewController: UIViewController {
     }
     // 設定問題是否出現
     func setDisplayQuestion() {
+        print("setDisplayQuestion")
         // 要先解除隱藏才有動畫
-        if isQnA { questionRootView.isHidden = false }
+        if isQnA {
+            questionRootView.isHidden = false
+            // 設定定時器
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timeCountDown), userInfo: nil, repeats: true)
+            UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 10, delay: 0) {
+                self.timeCountBar.frame.origin.x = 440
+                self.timeCountBar.frame.size.width = 0
+            }
+        }
+        
         UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0) {
             if isQnA {
                 self.questionRootView.alpha = 1
@@ -425,6 +440,27 @@ class ViewController: UIViewController {
             self.questionRootView.isHidden = !isQnA
         }
 
+    }
+    @objc func timeCountDown() {
+        timeCounter -= 1
+        timeLabel.text = String(timeCounter)
+        // 畫面處理
+        if (timeCounter == 0) {
+            resetTimer()
+            self.showNotification(isCorrect: false)
+            isQnA = false
+            playerStatus.answered = true
+            setDisplayQuestion()
+            setInfoCardView()
+        }
+    }
+    func resetTimer() {
+        timer.invalidate()
+        timeCounter = 10
+        timeLabel.text = String(timeCounter)
+        // reset bar
+        timeCountBar.frame.origin.x = 0
+        timeCountBar.frame.size.width = 440
     }
     // 設定答案正確與否提示
     func showNotification(isCorrect: Bool) {

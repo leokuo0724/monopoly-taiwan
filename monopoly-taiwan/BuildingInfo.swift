@@ -14,7 +14,7 @@ class BuildingInfo {
     let roadTollInfo: Array<Int>
     var owner: String
     var level: Int
-    let questions: Array<question>
+    let questions: Array<Question>
     
     init(index: Int,
          name: String,
@@ -22,7 +22,7 @@ class BuildingInfo {
          roadTollInfo: Array<Int>,
          owner: String,
          level: Int,
-         questions: Array<question>) {
+         questions: Array<Question>) {
         self.index = index
         self.name = name
         self.levelCostInfo = levelCostInfo
@@ -31,10 +31,4 @@ class BuildingInfo {
         self.level = level
         self.questions = questions
     }
-}
-
-struct question: Decodable {
-    let title: String
-    let options: Array<String>
-    let answer: String
 }

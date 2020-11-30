@@ -268,10 +268,26 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="440" height="98"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Q: 赤崁樓位於台灣哪一縣市？" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ln-LO-j5V">
-                                                        <rect key="frame" x="36" y="8" width="318" height="82"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="timer" translatesAutoresizingMaskIntoConstraints="NO" id="5iJ-gb-1XX">
+                                                        <rect key="frame" x="364" y="15" width="62" height="65"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Q" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ln-LO-j5V">
+                                                        <rect key="frame" x="36" y="10" width="313" height="72"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqX-zx-WOY">
+                                                        <rect key="frame" x="0.0" y="92" width="440" height="6"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" name="ComputerColor"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAH-Yg-0ze">
+                                                        <rect key="frame" x="376" y="33" width="37" height="41"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -347,6 +363,8 @@
                         <outlet property="roundImageView" destination="t50-Tu-amU" id="d75-IY-lDy"/>
                         <outlet property="roundLabel" destination="Z7a-7w-vYM" id="lai-6x-MiX"/>
                         <outlet property="tileUIView" destination="mgc-XN-hb1" id="ONb-iV-vzO"/>
+                        <outlet property="timeCountBar" destination="fqX-zx-WOY" id="Hve-4t-42V"/>
+                        <outlet property="timeLabel" destination="YAH-Yg-0ze" id="AYq-ir-hgq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -357,6 +375,7 @@
     <resources>
         <image name="correct" width="24" height="24"/>
         <image name="dice-1" width="260" height="265"/>
+        <image name="timer" width="64" height="77"/>
         <image name="玩家" width="25" height="50"/>
         <image name="電腦" width="25" height="50"/>
         <namedColor name="ComputerColor">

@@ -18,7 +18,6 @@ class SingleTileUIView: UIView {
         super.init(frame: frame)
         self.tileImgInit()
         self.setInteractive()
-        
     }
     
     required init?(coder: NSCoder) {

@@ -12,5 +12,5 @@ struct BuildingInfoData: Decodable {
     let name: String
     let levelCostInfo: Array<Int>
     let roadTollInfo: Array<Int>
-    let questions: Array<question>
+    let questions: Array<Question>
 }

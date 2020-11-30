@@ -3,7 +3,7 @@
     "index": 1,
     "name": "赤崁樓",
     "levelCostInfo": [200, 400, 900],
-    "roadTollInfo": [0, 100, 200, 500],
+    "roadTollInfo": [0, 100, 200, 400],
     "questions": [
       {
         "title": "赤崁樓的舊稱為？",
@@ -26,7 +26,7 @@
     "index": 2,
     "name": "林百貨",
     "levelCostInfo": [100, 200, 500],
-    "roadTollInfo": [0, 50, 100, 300],
+    "roadTollInfo": [0, 50, 100, 200],
     "questions": [
       {
         "title": "林百貨的俗稱為？",
@@ -49,7 +49,7 @@
     "index": 3,
     "name": "八五大樓",
     "levelCostInfo": [300, 600, 1300],
-    "roadTollInfo": [0, 150, 300, 800],
+    "roadTollInfo": [0, 150, 300, 600],
     "questions": [
       {
         "title": "八五大樓的高度為？",
@@ -72,7 +72,7 @@
     "index": 4,
     "name": "合興車站",
     "levelCostInfo": [100, 200, 500],
-    "roadTollInfo": [0, 50, 100, 300],
+    "roadTollInfo": [0, 50, 100, 200],
     "questions": [
       {
         "title": "合興車站位於哪一縣市？",
@@ -95,7 +95,7 @@
     "index": 5,
     "name": "國父紀念館",
     "levelCostInfo": [200, 400, 900],
-    "roadTollInfo": [0, 100, 200, 500],
+    "roadTollInfo": [0, 100, 200, 400],
     "questions": [
       {
         "title": "國父紀念館是為了要紀念誰而設立的？",
@@ -118,7 +118,7 @@
     "index": 6,
     "name": "安平古堡",
     "levelCostInfo": [200, 400, 900],
-    "roadTollInfo": [0, 100, 200, 500],
+    "roadTollInfo": [0, 100, 200, 400],
     "questions": [
       {
         "title": "安平古堡的舊稱為？",
@@ -146,7 +146,7 @@
     "index": 7,
     "name": "巴比倫空中花園",
     "levelCostInfo": [300, 600, 1300],
-    "roadTollInfo": [0, 150, 300, 800],
+    "roadTollInfo": [0, 150, 300, 600],
     "questions": [
       {
         "title": "下列哪個選項不是「古代世界七大奇蹟」？",
@@ -169,7 +169,7 @@
     "index": 8,
     "name": "慶修院",
     "levelCostInfo": [100, 200, 500],
-    "roadTollInfo": [0, 50, 100, 300],
+    "roadTollInfo": [0, 50, 100, 200],
     "questions": [
       {
         "title": "慶修院的舊稱為？",
@@ -192,7 +192,7 @@
     "index": 9,
     "name": "成大榕園",
     "levelCostInfo": [100, 200, 500],
-    "roadTollInfo": [0, 50, 100, 300],
+    "roadTollInfo": [0, 50, 100, 200],
     "questions": [
       {
         "title": "哪家企業以成大榕園作為其Logo標誌？",
@@ -215,7 +215,7 @@
     "index": 10,
     "name": "新埔柿餅工廠",
     "levelCostInfo": [100, 200, 500],
-    "roadTollInfo": [0, 50, 100, 300],
+    "roadTollInfo": [0, 50, 100, 200],
     "questions": [
       {
         "title": "新埔地區有什麼加分的天然要素，讓柿餅成為當地特產？",
@@ -238,7 +238,7 @@
     "index": 11,
     "name": "巨石陣",
     "levelCostInfo": [200, 400, 900],
-    "roadTollInfo": [0, 100, 200, 500],
+    "roadTollInfo": [0, 100, 200, 400],
     "questions": [
       {
         "title": "巨石陣位於哪個國家？",
@@ -256,7 +256,7 @@
     "index": 12,
     "name": "成大牌坊",
     "levelCostInfo": [100, 200, 500],
-    "roadTollInfo": [0, 50, 100, 300],
+    "roadTollInfo": [0, 50, 100, 200],
     "questions": [
       {
         "title": "下列哪個選項不是成大校園的裝置藝術？",
@@ -279,7 +279,7 @@
     "index": 13,
     "name": "黑帝斯神殿",
     "levelCostInfo": [300, 600, 1300],
-    "roadTollInfo": [0, 150, 300, 800],
+    "roadTollInfo": [0, 150, 300, 600],
     "questions": [
       {
         "title": "黑帝斯為主宰何處的神？",
@@ -302,7 +302,7 @@
     "index": 14,
     "name": "教堂",
     "levelCostInfo": [100, 200, 500],
-    "roadTollInfo": [0, 50, 100, 300],
+    "roadTollInfo": [0, 50, 100, 200],
     "questions": [
       {
         "title": "教堂的主要用途為？",
@@ -320,7 +320,7 @@
     "index": 15,
     "name": "中目黑星巴克",
     "levelCostInfo": [200, 400, 900],
-    "roadTollInfo": [0, 100, 200, 500],
+    "roadTollInfo": [0, 100, 200, 400],
     "questions": [
       {
         "title": "中目黑星巴克位於哪個地區？",
