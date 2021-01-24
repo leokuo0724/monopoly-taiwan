@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB82C2BE25BD243E00B61502 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EB82C2BD25BD243E00B61502 /* README.md */; };
 		EBAAF3A42573C86F00919663 /* BuildingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF3A32573C86F00919663 /* BuildingInfo.swift */; };
 		EBAAF3A72573CA3500919663 /* PlayerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAF3A62573CA3500919663 /* PlayerStatus.swift */; };
 		EBAAF3AB2573D4B900919663 /* buildingInfoData.json in Resources */ = {isa = PBXBuildFile; fileRef = EBAAF3AA2573D4B800919663 /* buildingInfoData.json */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB82C2BD25BD243E00B61502 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EBAAF3A32573C86F00919663 /* BuildingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingInfo.swift; sourceTree = "<group>"; };
 		EBAAF3A62573CA3500919663 /* PlayerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatus.swift; sourceTree = "<group>"; };
 		EBAAF3AA2573D4B800919663 /* buildingInfoData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buildingInfoData.json; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 		EBFE98F7256BF36200A71B4B = {
 			isa = PBXGroup;
 			children = (
+				EB82C2BD25BD243E00B61502 /* README.md */,
 				EBFE9902256BF36200A71B4B /* monopoly-taiwan */,
 				EBFE9901256BF36200A71B4B /* Products */,
 			);
@@ -144,6 +147,7 @@
 			files = (
 				EBFE9910256BF36500A71B4B /* LaunchScreen.storyboard in Resources */,
 				EBAAF3AB2573D4B900919663 /* buildingInfoData.json in Resources */,
+				EB82C2BE25BD243E00B61502 /* README.md in Resources */,
 				EBFE990D256BF36500A71B4B /* Assets.xcassets in Resources */,
 				EBFE990B256BF36200A71B4B /* Main.storyboard in Resources */,
 			);
