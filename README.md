@@ -1,6 +1,6 @@
 # Monopoly Taiwan
 
-A classical Monopoly game which is featured by buildings.
+A classical Monopoly game which is featured by buildings. <br>
 **Best experience size: iPhone 11**
 
 ![banner](https://miro.medium.com/max/1920/1*nIkyQNX5Wx-dH2dz7buVWw.png)
